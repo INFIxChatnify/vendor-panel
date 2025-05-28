@@ -38,15 +38,15 @@ export default defineConfig(({ mode }) => {
       __TALK_JS_APP_ID__: JSON.stringify(TALK_JS_APP_ID),
       __DISABLE_SELLERS_REGISTRATION__: JSON.stringify(
         DISABLE_SELLERS_REGISTRATION
-      ),
-    },    server: {
+      ),    },    server: {
       open: true,
       host: true,
       port: parseInt(process.env.PORT) || 8080
     },
     preview: {
       host: true,
-      port: parseInt(process.env.PORT) || 8080
+      port: parseInt(process.env.PORT) || 8080,
+      allowedHosts: ['all']
     },
     optimizeDeps: {
       entries: [],
