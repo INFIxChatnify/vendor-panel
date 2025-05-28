@@ -179,9 +179,7 @@ export const EditPromotionDetailsForm = ({
                   components={[<br key="break" />]}
                 />
               </Text>
-            </div>
-
-            <Form.Field
+            </div>            <Form.Field
               control={form.control}
               name="value"
               render={({ field: { onChange, ...field } }) => {
@@ -208,7 +206,7 @@ export const EditPromotionDetailsForm = ({
                   </Form.Item>
                 )
               }}
-            /> */}
+            />
           </div>
         </RouteDrawer.Body>
 
