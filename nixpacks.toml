@@ -11,4 +11,4 @@ cmd = 'npm run build'
 cmd = 'npm start'
 
 [variables]
-NPM_CONFIG_PACKAGE_LOCK_ONLY = 'true'
+NODE_ENV = 'production'
