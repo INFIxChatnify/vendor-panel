@@ -1,10 +1,10 @@
 {
   "name": "vendor-panel",
-  "version": "1.0.0",
-  "scripts": {
+  "version": "1.0.0",  "scripts": {
     "generate:static": "node ./scripts/generate-currencies.js && prettier --write ./src/lib/currencies.ts",
     "dev": "vite",
-    "build": "tsup && node ./scripts/generate-types.js",
+    "build": "vite build",
+    "build:original": "tsup && node ./scripts/generate-types.js",
     "build:preview": "vite build",
     "build:admin": "medusa build",
     "preview": "vite preview",
@@ -13,7 +13,7 @@
     "i18n:schema": "node ./scripts/i18n/generate-schema.js",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write .",
-    "start": "vite preview --port 8080"
+    "start": "vite preview --port $PORT --host 0.0.0.0"
   },
   "main": "dist/app.js",
   "module": "dist/app.mjs",

@@ -39,9 +39,14 @@ export default defineConfig(({ mode }) => {
       __DISABLE_SELLERS_REGISTRATION__: JSON.stringify(
         DISABLE_SELLERS_REGISTRATION
       ),
-    },
-    server: {
+    },    server: {
       open: true,
+      host: true,
+      port: parseInt(process.env.PORT) || 8080
+    },
+    preview: {
+      host: true,
+      port: parseInt(process.env.PORT) || 8080
     },
     optimizeDeps: {
       entries: [],
