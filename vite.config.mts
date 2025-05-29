@@ -6,7 +6,6 @@ import inspect from "vite-plugin-inspect"
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd())
-
   const BASE = env.VITE_MEDUSA_BASE || "/"
   const BACKEND_URL = env.VITE_MEDUSA_BACKEND_URL || "http://localhost:9000"
   const STOREFRONT_URL =
@@ -15,6 +14,9 @@ export default defineConfig(({ mode }) => {
   const TALK_JS_APP_ID = env.VITE_TALK_JS_APP_ID || ""
   const DISABLE_SELLERS_REGISTRATION =
     env.VITE_DISABLE_SELLERS_REGISTRATION || "false"
+
+  // Get Railway domain from environment
+  const RAILWAY_PUBLIC_DOMAIN = process.env.RAILWAY_PUBLIC_DOMAIN || ""
 
   /**
    * Add this to your .env file to specify the project to load admin extensions from.
@@ -35,18 +37,27 @@ export default defineConfig(({ mode }) => {
       __BACKEND_URL__: JSON.stringify(BACKEND_URL),
       __STOREFRONT_URL__: JSON.stringify(STOREFRONT_URL),
       __PUBLISHABLE_API_KEY__: JSON.stringify(PUBLISHABLE_API_KEY),
-      __TALK_JS_APP_ID__: JSON.stringify(TALK_JS_APP_ID),
-      __DISABLE_SELLERS_REGISTRATION__: JSON.stringify(
+      __TALK_JS_APP_ID__: JSON.stringify(TALK_JS_APP_ID),      __DISABLE_SELLERS_REGISTRATION__: JSON.stringify(
         DISABLE_SELLERS_REGISTRATION
-      ),    },    server: {
+      ),
+    },
+    server: {
       open: true,
       host: true,
       port: parseInt(process.env.PORT) || 8080
-    },
-    preview: {
+    },    preview: {
       host: true,
       port: parseInt(process.env.PORT) || 8080,
-      allowedHosts: ['all']
+      allowedHosts: process.env.NODE_ENV === 'production' ? true : [
+        RAILWAY_PUBLIC_DOMAIN,
+        'vendor-panel-production-8864.up.railway.app',
+        '.railway.app',
+        '.up.railway.app',
+        'localhost',
+        '127.0.0.1'
+      ].filter(Boolean),
+      strictPort: true,
+      hmr: false
     },
     optimizeDeps: {
       entries: [],
