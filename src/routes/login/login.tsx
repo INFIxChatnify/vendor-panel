@@ -10,6 +10,7 @@ import AvatarBox from "../../components/common/logo-box/avatar-box"
 import { useDashboardExtension } from "../../extensions"
 import { useSignInWithEmailPass } from "../../hooks/api"
 import { isFetchError } from "../../lib/is-fetch-error"
+import { LoginWithGoogleButton } from "../../components/auth/LoginWithGoogleButton"
 
 const LoginSchema = z.object({
   email: z.string().email(),
@@ -87,6 +88,7 @@ export const Login = () => {
           </Text>
         </div>
         <div className="flex w-full flex-col gap-y-3">
+          <LoginWithGoogleButton />
           {getWidgets("login.before").map((Component, i) => {
             return <Component key={i} />
           })}

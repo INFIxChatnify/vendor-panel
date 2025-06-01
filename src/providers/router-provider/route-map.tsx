@@ -1873,6 +1873,10 @@ export const RouteMap: RouteObject[] = [
             lazy: () => import("../../routes/invite"),
           },
           {
+            path: "/auth/google/callback-success",
+            lazy: () => import("../../routes/auth"),
+          },
+          {
             path: "*",
             lazy: () => import("../../routes/no-match"),
           },

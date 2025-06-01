@@ -37,27 +37,32 @@ export default defineConfig(({ mode }) => {
       __BACKEND_URL__: JSON.stringify(BACKEND_URL),
       __STOREFRONT_URL__: JSON.stringify(STOREFRONT_URL),
       __PUBLISHABLE_API_KEY__: JSON.stringify(PUBLISHABLE_API_KEY),
-      __TALK_JS_APP_ID__: JSON.stringify(TALK_JS_APP_ID),      __DISABLE_SELLERS_REGISTRATION__: JSON.stringify(
+      __TALK_JS_APP_ID__: JSON.stringify(TALK_JS_APP_ID),
+      __DISABLE_SELLERS_REGISTRATION__: JSON.stringify(
         DISABLE_SELLERS_REGISTRATION
       ),
     },
     server: {
       open: true,
       host: true,
-      port: parseInt(process.env.PORT) || 8080
-    },    preview: {
+      port: parseInt(process.env.PORT) || 5173,
+    },
+    preview: {
       host: true,
-      port: parseInt(process.env.PORT) || 8080,
-      allowedHosts: process.env.NODE_ENV === 'production' ? true : [
-        RAILWAY_PUBLIC_DOMAIN,
-        'vendor-panel-production-8864.up.railway.app',
-        '.railway.app',
-        '.up.railway.app',
-        'localhost',
-        '127.0.0.1'
-      ].filter(Boolean),
+      port: parseInt(process.env.PORT) || 5173,
+      allowedHosts:
+        process.env.NODE_ENV === "production"
+          ? true
+          : [
+              RAILWAY_PUBLIC_DOMAIN,
+              "vendor-panel-production-8864.up.railway.app",
+              ".railway.app",
+              ".up.railway.app",
+              "localhost",
+              "127.0.0.1",
+            ].filter(Boolean),
       strictPort: true,
-      hmr: false
+      hmr: false,
     },
     optimizeDeps: {
       entries: [],
