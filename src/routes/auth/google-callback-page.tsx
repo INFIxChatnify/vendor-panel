@@ -50,8 +50,10 @@ export default function GoogleCallback() {
   const validateCallback = async () => {
     const token = await sendCallback()
 
-    // const shouldCreateCustomer =
-    //   (decodeToken(token) as { actor_id: string }).actor_id === ""
+    const shouldCreateCustomer =
+      (decodeToken(token) as { actor_id: string }).actor_id === ""
+
+    console.log(decodeToken(token))
 
     // if (shouldCreateCustomer) {
     //   await createCustomer()
@@ -59,7 +61,7 @@ export default function GoogleCallback() {
     //   await refreshToken()
     // }
 
-    // // all subsequent requests are authenticated
+    // // // all subsequent requests are authenticated
     // const { customer: customerData } = await sdk.store.customer.retrieve()
 
     // setCustomer(customerData)
