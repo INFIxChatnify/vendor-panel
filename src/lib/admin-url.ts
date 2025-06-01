@@ -1,1 +1,1 @@
-export const MEDUSA_ADMIN_URL = __BACKEND_URL__ ?? "http://localhost:9000"
+export const MEDUSA_VENDOR_URL = __BASE__ ?? "http://localhost:9000"
