@@ -2,6 +2,7 @@
 import { Button } from "@medusajs/ui"
 import { sdk } from "../../lib/client" // Your Medusa JS SDK client instance
 import { useTranslation } from "react-i18next"
+import { MEDUSA_ADMIN_URL } from "../../lib/admin-url"
 
 export const LoginWithGoogleButton = () => {
   const { t } = useTranslation()
@@ -11,7 +12,7 @@ export const LoginWithGoogleButton = () => {
       // Assuming "seller" is your actor type, and "google" is the strategy name
       // configured in your Medusa backend.
       const result = await sdk.auth.login("seller", "my-auth", {
-        callback_url: "http://localhost:5173/auth/google/callback-success",
+        callback_url: `${MEDUSA_ADMIN_URL}/auth/google/callback-success`,
       })
 
       if (typeof result === "object" && result.location) {
