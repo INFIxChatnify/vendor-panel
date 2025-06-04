@@ -13,6 +13,7 @@ export const LoginWithGoogleButton = () => {
       // configured in your Medusa backend.
       const result = await sdk.auth.login("seller", "my-auth", {
         callback_url: `${MEDUSA_VENDOR_URL}/auth/google/callback-success`,
+        location: window.location.href,
       })
 
       if (typeof result === "object" && result.location) {
@@ -36,7 +37,7 @@ export const LoginWithGoogleButton = () => {
 
   return (
     <Button onClick={handleGoogleLogin} variant="secondary" className="w-full">
-      Sign in with Google
+      Sign in with Oauth
     </Button>
   )
 }

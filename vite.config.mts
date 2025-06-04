@@ -48,11 +48,11 @@ export default defineConfig(({ mode }) => {
     server: {
       open: true,
       host: true,
-      port: parseInt(process.env.PORT) || 5173,
+      port: parseInt(process.env.PORT) || 8080,
     },
     preview: {
       host: true,
-      port: parseInt(process.env.PORT) || 5173,
+      port: parseInt(process.env.PORT) || 8080,
       allowedHosts:
         process.env.NODE_ENV === "production"
           ? true

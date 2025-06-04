@@ -86,3 +86,32 @@ export const useUpdateProviderForEmailPass = (
     ...options,
   })
 }
+
+export const useSignUpWithOAuth = (
+  options?: UseMutationOptions<
+    string,
+    FetchError,
+    HttpTypes.AdditionalData & {
+      confirmPassword: string
+      name: string
+    }
+  >
+) => {
+  return useMutation({
+    mutationFn: (payload) => sdk.auth.register("seller", "emailpass", payload),
+    onSuccess: async (_, variables) => {
+      const seller = {
+        name: variables.name,
+        member: {
+          name: variables.name,
+          email: variables.email,
+        },
+      }
+      await fetchQuery("/vendor/sellers", {
+        method: "POST",
+        body: seller,
+      })
+    },
+    ...options,
+  })
+}
