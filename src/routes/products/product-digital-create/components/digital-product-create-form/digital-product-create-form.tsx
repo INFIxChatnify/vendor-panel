@@ -63,7 +63,7 @@ export const DigitalProductCreateForm = ({}: DigitalProductCreateFormProps) => {
       name: values.name,
       medias: uploadedFiles.map((file) => ({
         type: file.type,
-        file_id: file.url,
+        file_id: file.id,
         mime_type: "image/png",
       })),
       product: {
