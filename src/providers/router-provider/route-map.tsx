@@ -225,6 +225,11 @@ export const RouteMap: RouteObject[] = [
                     lazy: () => import("../../routes/products/product-create"),
                   },
                   {
+                    path: "create-digital",
+                    lazy: () =>
+                      import("../../routes/products/product-digital-create"),
+                  },
+                  {
                     path: "import",
                     lazy: () => import("../../routes/products/product-import"),
                   },

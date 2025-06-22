@@ -77,6 +77,9 @@ export const ProductListTable = () => {
           <Button size="small" variant="secondary" asChild>
             <Link to="create">{t("actions.create")}</Link>
           </Button>
+          <Button size="small" variant="primary" asChild>
+            <Link to="create-digital">Create Digital Product</Link>
+          </Button>
         </div>
       </div>
       <_DataTable

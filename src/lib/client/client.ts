@@ -3,7 +3,6 @@ import Medusa from "@medusajs/js-sdk"
 export const backendUrl = __BACKEND_URL__ ?? "/"
 export const publishableApiKey = __PUBLISHABLE_API_KEY__ ?? ""
 
-const token = window.localStorage.getItem("medusa_auth_token") || ""
 
 export const sdk = new Medusa({
   baseUrl: backendUrl,
@@ -19,11 +18,13 @@ export const importProductsQuery = async (file: File) => {
   const formData = new FormData()
   formData.append("file", file)
 
+  const currentToken = window.localStorage.getItem("medusa_auth_token") || ""
+
   return await fetch(`${backendUrl}/vendor/products/import`, {
     method: "POST",
     body: formData,
     headers: {
-      authorization: `Bearer ${token}`,
+      authorization: `Bearer ${currentToken}`,
       "x-publishable-api-key": publishableApiKey,
     },
   })
@@ -38,11 +39,13 @@ export const uploadFilesQuery = async (files: any[]) => {
     formData.append("files", file)
   }
 
+  const currentToken = window.localStorage.getItem("medusa_auth_token") || ""
+
   return await fetch(`${backendUrl}/vendor/uploads`, {
     method: "POST",
     body: formData,
     headers: {
-      authorization: `Bearer ${token}`,
+      authorization: `Bearer ${currentToken}`,
       "x-publishable-api-key": publishableApiKey,
     },
   })
@@ -64,7 +67,7 @@ export const fetchQuery = async (
     headers?: { [key: string]: string }
   }
 ) => {
-  const bearer = (await window.localStorage.getItem("medusa_auth_token")) || ""
+  const bearer = window.localStorage.getItem("medusa_auth_token") || ""
   const params = Object.entries(query || {}).reduce(
     (acc, [key, value], index) => {
       if (value && value !== undefined) {

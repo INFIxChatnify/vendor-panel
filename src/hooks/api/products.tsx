@@ -546,3 +546,40 @@ export const useConfirmImportProducts = (
     ...options,
   })
 }
+
+export const useCreateDigitalProduct = (
+  options?: UseMutationOptions<any, FetchError, any>
+) => {
+  return useMutation({
+    mutationFn: async (payload: {
+      name: string;
+      medias: Array<{
+        type: string;
+        file_id: string;
+        mime_type: string;
+      }>;
+      product: {
+        title: string;
+        description: string;
+        variants: Array<{
+          title: string;
+          prices: Array<{
+            currency_code: string;
+            amount: number;
+          }>;
+        }>;
+      };
+    }) =>
+      await fetchQuery("/vendor/digital-products", {
+        method: "POST",
+        body: payload,
+      }),
+    onSuccess: (data, variables, context) => {
+      queryClient.invalidateQueries({
+        queryKey: productsQueryKeys.lists(),
+      })
+      options?.onSuccess?.(data, variables, context)
+    },
+    ...options,
+  })
+}
